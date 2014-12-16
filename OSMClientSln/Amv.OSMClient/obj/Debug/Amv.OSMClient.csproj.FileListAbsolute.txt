@@ -5,3 +5,6 @@ D:\Github\OSMClient\OSMClient\OSMClient\obj\Debug\Amv.OSMClient.Properties.Resou
 D:\Github\OSMClient\OSMClient\OSMClient\obj\Debug\Amv.OSMClient.csproj.GenerateResource.Cache
 D:\Github\OSMClient\OSMClient\OSMClient\obj\Debug\OSMClient.exe
 D:\Github\OSMClient\OSMClient\OSMClient\obj\Debug\OSMClient.pdb
+D:\Github\OSMClient\Amv.OSMClient\OSMClient\bin\Debug\OSMClient.exe.config
+D:\Github\OSMClient\Amv.OSMClient\OSMClient\obj\Debug\OSMClient.exe
+D:\Github\OSMClient\Amv.OSMClient\OSMClient\obj\Debug\OSMClient.pdb
