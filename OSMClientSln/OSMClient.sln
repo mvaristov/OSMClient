@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amv.OSMClient", "OSMClient\Amv.OSMClient.csproj", "{074287C8-A5AC-4900-B782-26C088D4DE5C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amv.OSMClient", "Amv.OSMClient\Amv.OSMClient.csproj", "{074287C8-A5AC-4900-B782-26C088D4DE5C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

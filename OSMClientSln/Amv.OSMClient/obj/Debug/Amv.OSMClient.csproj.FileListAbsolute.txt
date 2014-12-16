@@ -8,3 +8,6 @@ D:\Github\OSMClient\OSMClient\OSMClient\obj\Debug\OSMClient.pdb
 D:\Github\OSMClient\Amv.OSMClient\OSMClient\bin\Debug\OSMClient.exe.config
 D:\Github\OSMClient\Amv.OSMClient\OSMClient\obj\Debug\OSMClient.exe
 D:\Github\OSMClient\Amv.OSMClient\OSMClient\obj\Debug\OSMClient.pdb
+D:\Github\OSMClient\OSMClientSln\Amv.OSMClient\bin\Debug\OSMClient.exe.config
+D:\Github\OSMClient\OSMClientSln\Amv.OSMClient\obj\Debug\OSMClient.exe
+D:\Github\OSMClient\OSMClientSln\Amv.OSMClient\obj\Debug\OSMClient.pdb
