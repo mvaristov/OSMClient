@@ -13,7 +13,7 @@ namespace Amv.OsmGeo.MapLayer
     /// </summary>
     public class OsmMapLayer:IGeoMapLayer
     {
-        private const int TILE_SIZE = 256;
+       // private const int TILE_SIZE = 256;
 
         /// <summary>
         /// получение всех тайлов которые необходимы для отображения карты
@@ -33,21 +33,22 @@ namespace Amv.OsmGeo.MapLayer
             //тайл который будет располагаться в центре панели карты.
             OsmMapTile centerTile = new OsmMapTile(zoom);
             //координаты центрального тайла, для загрузки изображения.
-            centerTile.TileCoords = new Point((int)Math.Floor(osmPointFromLatLng.X / TILE_SIZE), (int)Math.Floor(osmPointFromLatLng.Y / TILE_SIZE));
+            centerTile.TileCoords = new Point((int)Math.Floor(osmPointFromLatLng.X / centerTile.TileSize.Width), (int)Math.Floor(osmPointFromLatLng.Y / centerTile.TileSize.Height));
             //получаем смещение от центра 
-            Point osmCoordCenterTile = new Point((centerTile.TileCoords.X * TILE_SIZE)+(TILE_SIZE/2),( centerTile.TileCoords.Y * TILE_SIZE)+(TILE_SIZE/2));
+            Point osmCoordCenterTile = new Point((centerTile.TileCoords.X * centerTile.TileSize.Width)+(centerTile.TileSize.Width/2),
+                ( centerTile.TileCoords.Y * centerTile.TileSize.Height)+(centerTile.TileSize.Height/2));
             //смещение заданной точки от центра тайла.
             Size offsetCenterTile = new Size((int)Math.Floor(osmCoordCenterTile.X - osmPointFromLatLng.X), (int)Math.Floor(osmCoordCenterTile.Y - osmPointFromLatLng.Y));
             //расчитываем координаты на панели, чтобы заданная точка в широте и долготе оказалась в центре панели
             centerTile.AppPaneCoords = new Point(
-                centerMapPanePoint.X-(TILE_SIZE/2)+offsetCenterTile.Width,
-                centerMapPanePoint.Y-(TILE_SIZE/2)+offsetCenterTile.Height);
+                centerMapPanePoint.X - (centerTile.TileSize.Width / 2) + offsetCenterTile.Width,
+                centerMapPanePoint.Y - (centerTile.TileSize.Height / 2) + offsetCenterTile.Height);
             //получаем необходимое количество тайлов по черырем сторонам относительно центрального тайла 
             int countTilesLeft=0;
             int countTilesTop=0;
             int countTilesRight=0;
             int countTilesBottom=0;
-            this.getCountTilesForMapPane(centerTile.AppPaneBounds, mapPaneBounds, out countTilesTop, out countTilesLeft, out countTilesBottom, out countTilesRight);
+            this.getCountTilesForMapPane(centerTile.AppPaneBounds, mapPaneBounds,centerTile.TileSize, out countTilesTop, out countTilesLeft, out countTilesBottom, out countTilesRight);
             //получаем общее количество тайлов по горизонтали
             int countTilesForWidth = countTilesLeft + countTilesRight + 1;
             //получаем общее количество тайлов по вертикали
@@ -57,16 +58,16 @@ namespace Amv.OsmGeo.MapLayer
             //получаем начальную osm координату по оси Y
             int startTileOsmY = centerTile.TileCoords.Y - countTilesTop;
             //получаем начальную координату в панели карты по оси X
-            int startTileAppX = centerTile.AppPaneCoords.X - (countTilesLeft * TILE_SIZE);
+            int startTileAppX = centerTile.AppPaneCoords.X - (countTilesLeft * centerTile.TileSize.Width);
             //получаем начальную координату в панели карты по оси Y
-            int startTileAppY = centerTile.AppPaneCoords.Y - (countTilesTop * TILE_SIZE);
+            int startTileAppY = centerTile.AppPaneCoords.Y - (countTilesTop * centerTile.TileSize.Height);
             //раставляем тайлы по координатам osm и координатам панели карты.
             tilesForRequest.Clear();
             for (int j = 0; j < countTilesForHeight; j++) {
                 for (int i = 0; i < countTilesForWidth; i++) {
                     OsmMapTile tile = new OsmMapTile(zoom);
                     tile.TileCoords = new Point(startTileOsmX+i,startTileOsmY+j);
-                    tile.AppPaneCoords = new Point(startTileAppX + (i * TILE_SIZE), startTileAppY + (j * TILE_SIZE));
+                    tile.AppPaneCoords = new Point(startTileAppX + (i * centerTile.TileSize.Width), startTileAppY + (j * centerTile.TileSize.Height));
                     tilesForRequest.Add(tile);
                 }
             }
@@ -174,7 +175,7 @@ namespace Amv.OsmGeo.MapLayer
         /// <param name="countTilesLeft"></param>
         /// <param name="countTilesBottom"></param>
         /// <param name="countTilesRight"></param>
-        private void getCountTilesForMapPane(Rectangle centerTileBounds, Rectangle mapPaneBounds, out int countTilesTop, out int countTilesLeft, out int countTilesBottom, out int countTilesRight) {
+        private void getCountTilesForMapPane(Rectangle centerTileBounds, Rectangle mapPaneBounds,Size tileSize, out int countTilesTop, out int countTilesLeft, out int countTilesBottom, out int countTilesRight) {
            countTilesLeft = 0;
             countTilesTop = 0;
             countTilesRight = 0;
@@ -184,25 +185,25 @@ namespace Amv.OsmGeo.MapLayer
             int currentPoint = centerTileBounds.Left;
             while (currentPoint > mapPaneBounds.Left) {
                 countTilesLeft++;
-                currentPoint -= TILE_SIZE;
+                currentPoint -= tileSize.Width;
             }
             //определяем количество вверх
             currentPoint = centerTileBounds.Top;
             while (currentPoint > mapPaneBounds.Top) {
                 countTilesTop++;
-                currentPoint -= TILE_SIZE;
+                currentPoint -= tileSize.Height;
             }
             //определяем количесвто вправо
             currentPoint = centerTileBounds.Right;
             while (currentPoint < mapPaneBounds.Right) {
                 countTilesRight++;
-                currentPoint += TILE_SIZE;
+                currentPoint += tileSize.Width;
             }
             //опеределяем количество вниз
             currentPoint = centerTileBounds.Bottom;
             while (currentPoint < mapPaneBounds.Bottom) {
                 countTilesBottom++;
-                currentPoint += TILE_SIZE;
+                currentPoint += tileSize.Height;
             }
         }
         /// <summary>

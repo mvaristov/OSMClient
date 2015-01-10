@@ -353,7 +353,7 @@ namespace Amv.GeoClient.WinForms
             //сбрасываем помощника перетаскивания карты
             this._movePaneHelper.ResetMove();
             //очищаем кэш тайлов
-            this._geoDataLayer.ClearCacheTiles();
+            //this._geoDataLayer.ClearCacheTiles();
             //чистим панель карты от предыдущих отрисованных тайлов
             //this.ClearPaneMap();
             return true;
@@ -367,6 +367,7 @@ namespace Amv.GeoClient.WinForms
             if (this.preZooming()) {
                 //увеличиваем значения зума на 1.
                 this._selectedPlaceInfo.Zoom++;
+                this.lblPlaceDisplayName.Text = this._selectedPlaceInfo.Zoom.ToString();
                 //заново создаем карту
                 //this.CreateMap();
                 this.pnlMap.Invalidate();
@@ -382,6 +383,7 @@ namespace Amv.GeoClient.WinForms
             if (this.preZooming()) {
                 //уменьшаем значение зума на 1
                 this._selectedPlaceInfo.Zoom--;
+                this.lblPlaceDisplayName.Text = this._selectedPlaceInfo.Zoom.ToString();
                 //пересоздаем карту
                 //this.CreateMap();
                 this.pnlMap.Invalidate();
