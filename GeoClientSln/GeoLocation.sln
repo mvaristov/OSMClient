@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 2013
+VisualStudioVersion = 12.0.30110.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amv.Geo.Core", "Amv.Osm.Core\Amv.Geo.Core.csproj", "{EE42F583-C181-4148-9395-206BF86BFE5E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Amv.OsmGeo.Engine", "Amv.OsmGeo.Engine\Amv.OsmGeo.Engine.csproj", "{A976A1EA-BBAA-417C-BC1E-AF6F414874A4}"
