@@ -21,7 +21,7 @@ using System.Diagnostics;
 namespace Amv.GeoClient.WinForms
 {
     /// <summary>
-    /// основная форма приложения
+    /// основная форма приложения (угааа)
     /// </summary>
     public partial class MainForm : Form
     {
