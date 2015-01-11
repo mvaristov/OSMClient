@@ -11,8 +11,9 @@ namespace Amv.OsmGeo.MapLayer
     /// <summary>
     /// менеджер для работы с системой osm
     /// </summary>
-    public class OsmMapLayer:IGeoMapLayer
+    public class YandexMapLayer:IGeoMapLayer
     {
+       // private const int TILE_SIZE = 256;
 
         /// <summary>
         /// получение всех тайлов которые необходимы для отображения карты
@@ -30,7 +31,7 @@ namespace Amv.OsmGeo.MapLayer
             //получаем координаты центра панели карты
             Point centerMapPanePoint=this.getPointOfCenterMapPaneBounds(mapPaneBounds);
             //тайл который будет располагаться в центре панели карты.
-            OsmMapTile centerTile = new OsmMapTile(zoom);
+            YandexMapTile centerTile = new YandexMapTile(zoom);
             //координаты центрального тайла, для загрузки изображения.
             centerTile.TileCoords = new Point((int)Math.Floor(osmPointFromLatLng.X / centerTile.TileSize.Width), (int)Math.Floor(osmPointFromLatLng.Y / centerTile.TileSize.Height));
             //получаем смещение от центра 
@@ -64,7 +65,7 @@ namespace Amv.OsmGeo.MapLayer
             tilesForRequest.Clear();
             for (int j = 0; j < countTilesForHeight; j++) {
                 for (int i = 0; i < countTilesForWidth; i++) {
-                    OsmMapTile tile = new OsmMapTile(zoom);
+                    YandexMapTile tile = new YandexMapTile(zoom);
                     tile.TileCoords = new Point(startTileOsmX+i,startTileOsmY+j);
                     tile.AppPaneCoords = new Point(startTileAppX + (i * centerTile.TileSize.Width), startTileAppY + (j * centerTile.TileSize.Height));
                     tilesForRequest.Add(tile);

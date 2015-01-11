@@ -69,7 +69,7 @@ namespace Amv.GeoClient.WinForms
             //поставщик информации доступных мест на карте по строке запроса.
             this._locationProvider = new OsmNominatimGeoLocationsProvider();
             //реализует бизнес слой для получения тайлов запрашиваемой карты
-            this._geoMapLayer = new OsmMapLayer();
+            this._geoMapLayer =new YandexMapLayer();//new OsmMapLayer();
             //слой получения данных для отрисовки карты
             this._geoDataLayer = new HttpDataLayer();
             //помощник перетаскивания карты
@@ -291,7 +291,8 @@ namespace Amv.GeoClient.WinForms
                 using (MemoryStream ms = new MemoryStream(tile.DataBinary)) {
                     using (Bitmap btmTile = new Bitmap(ms)) {
                         graphics.DrawImageUnscaled(btmTile, tile.AppPaneCoords);
-                        //graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
+                        graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
+                        graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
                     }
                 }
             }
