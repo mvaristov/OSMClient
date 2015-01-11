@@ -17,6 +17,7 @@ using Amv.GeoClient.WinForms.Properties;
 using System.Net;
 using System.Drawing.Imaging;
 using System.Diagnostics;
+using Amv.YandexGeo.MapLayer;
 
 namespace Amv.GeoClient.WinForms
 {

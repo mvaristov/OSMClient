@@ -26,7 +26,7 @@ namespace Amv.OsmGeo.MapLayer
             //коллекция тайлов
             List<MapTileBase> tilesForRequest = new List<MapTileBase>();
             //получаем заданную точку в координатах osm
-            PointD osmPointFromLatLng = LatLngAndOsmPointConverter.ConvertLatLngToOsmPoint(lat, lng, zoom);
+            PointD osmPointFromLatLng = OsmLatLngAndPxConverter.ConvertLatLngToPx(lat, lng, zoom);
             //получаем координаты центра панели карты
             Point centerMapPanePoint=this.getPointOfCenterMapPaneBounds(mapPaneBounds);
             //тайл который будет располагаться в центре панели карты.
@@ -94,9 +94,9 @@ namespace Amv.OsmGeo.MapLayer
         /// <returns></returns>
         public virtual LatLng GetLatLngFromBaseLatLng(Size moveSize, int zoom, double baseLat, double baseLng) {
             //получаем заданную точку в координатах osm
-            PointD osmPointFromLatLng = LatLngAndOsmPointConverter.ConvertLatLngToOsmPoint(baseLat,baseLng, zoom);
+            PointD osmPointFromLatLng = OsmLatLngAndPxConverter.ConvertLatLngToPx(baseLat,baseLng, zoom);
             PointD osmPointFromLatLngFromMoveSize = new PointD(osmPointFromLatLng.X - moveSize.Width, osmPointFromLatLng.Y - moveSize.Height);
-            return LatLngAndOsmPointConverter.ConverOsmPointInLatLng(osmPointFromLatLngFromMoveSize,zoom);
+            return OsmLatLngAndPxConverter.ConverPxInLatLng(osmPointFromLatLngFromMoveSize,zoom);
         }
 
         /// <summary>
@@ -126,9 +126,9 @@ namespace Amv.OsmGeo.MapLayer
             //получение координат приложения на панели карты от широты и долготы точки относительно базовой широты и долготы.
             //получаем базовую точку в координатах osm от базовых широты и долготы 
             //(подразумевается, что базовые координаты (широта и долгота) расположены в центре панели карты.
-            PointD osmBasePointFromLatLng = LatLngAndOsmPointConverter.ConvertLatLngToOsmPoint(baseLat, baseLng, zoom);
+            PointD osmBasePointFromLatLng = OsmLatLngAndPxConverter.ConvertLatLngToPx(baseLat, baseLng, zoom);
             //получаем заданную точку в координатах osm 
-            PointD osmCurrentPointFromLatLng = LatLngAndOsmPointConverter.ConvertLatLngToOsmPoint(currentLat,currentLng, zoom);
+            PointD osmCurrentPointFromLatLng = OsmLatLngAndPxConverter.ConvertLatLngToPx(currentLat,currentLng, zoom);
             //получаем смещение в пикселях относительно базовой координаты
             Size offsetCurrentOsmFromBase = new Size((int)Math.Floor(osmBasePointFromLatLng.X - osmCurrentPointFromLatLng.X),
                 (int)Math.Floor( osmBasePointFromLatLng.Y - osmCurrentPointFromLatLng.Y));

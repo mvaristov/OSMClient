@@ -107,6 +107,10 @@
       <Project>{a976a1ea-bbaa-417c-bc1e-af6f414874a4}</Project>
       <Name>Amv.OsmGeo.Engine</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Amv.YandexGeo.Engine\Amv.YandexGeo.Engine.csproj">
+      <Project>{cdec28ee-3579-4593-a991-47365594a121}</Project>
+      <Name>Amv.YandexGeo.Engine</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\marker-icon.png" />
