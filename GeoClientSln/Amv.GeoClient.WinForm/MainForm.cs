@@ -212,8 +212,8 @@ namespace Amv.GeoClient.WinForms
         /// очистка панели карты
         /// </summary>
         private void ClearPaneMap() {
-            using (Graphics gr = this.pnlMapBackground.CreateGraphics()) {
-                gr.Clear(this.pnlMapBackground.BackColor);
+            using (Graphics gr = this.pnlMap.CreateGraphics()) {
+                gr.Clear(this.pnlMap.BackColor);
             }
         }
        
