@@ -46,7 +46,6 @@
   <ItemGroup>
     <Compile Include="CacheMapTiles.cs" />
     <Compile Include="HttpDataLayer.cs" />
-    <Compile Include="OsmLatLngAndPxConverter.cs" />
     <Compile Include="OsmGeoLocation.cs" />
     <Compile Include="OsmGeoLocationsInfoClient.cs" />
     <Compile Include="MapTileDataClient.cs" />

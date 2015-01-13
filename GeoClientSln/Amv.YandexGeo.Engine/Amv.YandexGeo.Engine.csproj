@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="YandexLatLngAndPxConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="YandexMapLayer.cs" />
     <Compile Include="YandexMapTile.cs" />

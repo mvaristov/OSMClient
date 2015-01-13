@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using Amv.Geo.Core;
 using System.Drawing;
-using Amv.YandexGeo.MapLayer.Utils;
 
 namespace Amv.YandexGeo.MapLayer
 {
@@ -27,7 +26,7 @@ namespace Amv.YandexGeo.MapLayer
             //коллекция тайлов
             List<MapTileBase> tilesForRequest = new List<MapTileBase>();
             //получаем заданную точку в координатах osm
-            PointD osmPointFromLatLng = YandexLatLngAndPxConverter.ConvertLatLngToPx(lat, lng, zoom);
+            PointD osmPointFromLatLng = WSD84LatLngAndPxConverter.ConvertLatLngToPx(lat, lng, zoom);
             //получаем координаты центра панели карты
             Point centerMapPanePoint=this.getPointOfCenterMapPaneBounds(mapPaneBounds);
             //тайл который будет располагаться в центре панели карты.
@@ -95,9 +94,9 @@ namespace Amv.YandexGeo.MapLayer
         /// <returns></returns>
         public virtual LatLng GetLatLngFromBaseLatLng(Size moveSize, int zoom, double baseLat, double baseLng) {
             //получаем заданную точку в координатах osm
-            PointD osmPointFromLatLng = YandexLatLngAndPxConverter.ConvertLatLngToPx(baseLat, baseLng, zoom);
+            PointD osmPointFromLatLng = WSD84LatLngAndPxConverter.ConvertLatLngToPx(baseLat, baseLng, zoom);
             PointD osmPointFromLatLngFromMoveSize = new PointD(osmPointFromLatLng.X - moveSize.Width, osmPointFromLatLng.Y - moveSize.Height);
-            return YandexLatLngAndPxConverter.ConverPxInLatLng(osmPointFromLatLngFromMoveSize, zoom);
+            return WSD84LatLngAndPxConverter.ConverPxInLatLng(osmPointFromLatLngFromMoveSize, zoom);
         }
 
         /// <summary>
@@ -127,9 +126,9 @@ namespace Amv.YandexGeo.MapLayer
             //получение координат приложения на панели карты от широты и долготы точки относительно базовой широты и долготы.
             //получаем базовую точку в координатах osm от базовых широты и долготы 
             //(подразумевается, что базовые координаты (широта и долгота) расположены в центре панели карты.
-            PointD osmBasePointFromLatLng = YandexLatLngAndPxConverter.ConvertLatLngToPx(baseLat, baseLng, zoom);
+            PointD osmBasePointFromLatLng = WSD84LatLngAndPxConverter.ConvertLatLngToPx(baseLat, baseLng, zoom);
             //получаем заданную точку в координатах osm 
-            PointD osmCurrentPointFromLatLng = YandexLatLngAndPxConverter.ConvertLatLngToPx(currentLat, currentLng, zoom);
+            PointD osmCurrentPointFromLatLng = WSD84LatLngAndPxConverter.ConvertLatLngToPx(currentLat, currentLng, zoom);
             //получаем смещение в пикселях относительно базовой координаты
             Size offsetCurrentOsmFromBase = new Size((int)Math.Floor(osmBasePointFromLatLng.X - osmCurrentPointFromLatLng.X),
                 (int)Math.Floor( osmBasePointFromLatLng.Y - osmCurrentPointFromLatLng.Y));

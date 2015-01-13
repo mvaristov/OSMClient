@@ -220,6 +220,7 @@ namespace Amv.GeoClient.WinForms
         /// </summary>
         private void CreateMap() {
             if (this._selectedPlaceInfo == null) return;
+            this.lblPlaceZoom.Text = this._selectedPlaceInfo.Zoom.ToString();
             //расчет необходимых тайлов для отображения карты
             IEnumerable<MapTileBase> mapTiles = this._geoMapLayer.GetMapTilesForPlaceInfo(this.pnlMap.ClientRectangle,this._selectedPlaceInfo.Zoom,
                 this._currentLatLng);
@@ -294,8 +295,8 @@ namespace Amv.GeoClient.WinForms
                 using (MemoryStream ms = new MemoryStream(tile.DataBinary)) {
                     using (Bitmap btmTile = new Bitmap(ms)) {
                         graphics.DrawImageUnscaled(btmTile, tile.AppPaneCoords);
-                        graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
-                        graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
+                        //graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
+                        //graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
                     }
                 }
             }
@@ -371,7 +372,6 @@ namespace Amv.GeoClient.WinForms
             if (this.preZooming()) {
                 //увеличиваем значения зума на 1.
                 this._selectedPlaceInfo.Zoom++;
-                this.lblPlaceDisplayName.Text = this._selectedPlaceInfo.Zoom.ToString();
                 //заново создаем карту
                 //this.CreateMap();
                 this.pnlMap.Invalidate();
@@ -387,7 +387,6 @@ namespace Amv.GeoClient.WinForms
             if (this.preZooming()) {
                 //уменьшаем значение зума на 1
                 this._selectedPlaceInfo.Zoom--;
-                this.lblPlaceDisplayName.Text = this._selectedPlaceInfo.Zoom.ToString();
                 //пересоздаем карту
                 //this.CreateMap();
                 this.pnlMap.Invalidate();
@@ -464,6 +463,11 @@ namespace Amv.GeoClient.WinForms
             this.pnlLocationInfo.Visible = false;
         }
 
+        /// <summary>
+        /// обработка события изменения поставщика отображения карты
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void miFile_MapProviders_Items_SelectedIndexChanged(object sender, EventArgs e) {
             if (this.miFile_MapProviders_Items.SelectedIndex == 0) {
                 this._geoMapLayer = new OsmMapLayer();
@@ -471,8 +475,9 @@ namespace Amv.GeoClient.WinForms
             if (this.miFile_MapProviders_Items.SelectedIndex == 1) {
                 this._geoMapLayer = new YandexMapLayer();
             }
+            this.lblProviderMap.Text =string.Format("Поставщик карт: {0}", this.miFile_MapProviders_Items.SelectedItem);
             this._geoDataLayer.ClearCacheTiles();
-            this.CreateMap();
+            this.pnlMap.Invalidate();
         }
 
         

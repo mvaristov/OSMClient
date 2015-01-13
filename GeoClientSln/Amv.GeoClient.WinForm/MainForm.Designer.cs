@@ -36,23 +36,23 @@
             this.pnlMapBackground = new System.Windows.Forms.Panel();
             this.btnZoomDown = new System.Windows.Forms.Button();
             this.btnZoomUp = new System.Windows.Forms.Button();
+            this.lblPlaceZoom = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.pnlLeft = new System.Windows.Forms.Panel();
-            this.lblPlaceDisplayName = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.btnCancelSearch = new System.Windows.Forms.Button();
             this.menuStripMain = new System.Windows.Forms.MenuStrip();
             this.tsmiFile = new System.Windows.Forms.ToolStripMenuItem();
             this.tsmiFile_MapProviders = new System.Windows.Forms.ToolStripMenuItem();
             this.miFile_MapProviders_Items = new System.Windows.Forms.ToolStripComboBox();
-            this.pnlMap = new Amv.GeoClient.WinForms.DoubleBufferedPanel();
+            this.lblProviderMap = new System.Windows.Forms.Label();
             this.pnlLocationInfo = new Amv.GeoClient.WinForms.MessagePanel();
             this.lLblClosePnlInfoLocation = new System.Windows.Forms.LinkLabel();
+            this.pnlMap = new Amv.GeoClient.WinForms.DoubleBufferedPanel();
             this.pnlMain.SuspendLayout();
             this.pnlMapBackground.SuspendLayout();
             this.pnlLeft.SuspendLayout();
             this.menuStripMain.SuspendLayout();
-            this.pnlMap.SuspendLayout();
             this.pnlLocationInfo.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,6 +135,8 @@
             this.pnlMapBackground.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlMapBackground.Controls.Add(this.btnZoomDown);
             this.pnlMapBackground.Controls.Add(this.btnZoomUp);
+            this.pnlMapBackground.Controls.Add(this.lblPlaceZoom);
+            this.pnlMapBackground.Controls.Add(this.pnlLocationInfo);
             this.pnlMapBackground.Controls.Add(this.pnlMap);
             this.pnlMapBackground.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlMapBackground.Location = new System.Drawing.Point(305, 0);
@@ -145,7 +147,7 @@
             // btnZoomDown
             // 
             this.btnZoomDown.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnZoomDown.Location = new System.Drawing.Point(5, 30);
+            this.btnZoomDown.Location = new System.Drawing.Point(5, 45);
             this.btnZoomDown.Name = "btnZoomDown";
             this.btnZoomDown.Size = new System.Drawing.Size(25, 23);
             this.btnZoomDown.TabIndex = 1;
@@ -165,6 +167,17 @@
             this.btnZoomUp.UseVisualStyleBackColor = true;
             this.btnZoomUp.Click += new System.EventHandler(this.btnZoomUp_Click);
             // 
+            // lblPlaceZoom
+            // 
+            this.lblPlaceZoom.AutoSize = true;
+            this.lblPlaceZoom.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.lblPlaceZoom.ForeColor = System.Drawing.Color.Black;
+            this.lblPlaceZoom.Location = new System.Drawing.Point(8, 30);
+            this.lblPlaceZoom.Name = "lblPlaceZoom";
+            this.lblPlaceZoom.Size = new System.Drawing.Size(16, 13);
+            this.lblPlaceZoom.TabIndex = 17;
+            this.lblPlaceZoom.Text = "...";
+            // 
             // splitter1
             // 
             this.splitter1.BackColor = System.Drawing.SystemColors.Control;
@@ -183,17 +196,6 @@
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(300, 521);
             this.pnlLeft.TabIndex = 15;
-            // 
-            // lblPlaceDisplayName
-            // 
-            this.lblPlaceDisplayName.AutoSize = true;
-            this.lblPlaceDisplayName.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.lblPlaceDisplayName.ForeColor = System.Drawing.Color.Black;
-            this.lblPlaceDisplayName.Location = new System.Drawing.Point(734, 53);
-            this.lblPlaceDisplayName.Name = "lblPlaceDisplayName";
-            this.lblPlaceDisplayName.Size = new System.Drawing.Size(37, 13);
-            this.lblPlaceDisplayName.TabIndex = 17;
-            this.lblPlaceDisplayName.Text = "24234";
             // 
             // progressBar1
             // 
@@ -243,25 +245,21 @@
             // miFile_MapProviders_Items
             // 
             this.miFile_MapProviders_Items.Items.AddRange(new object[] {
-            "OsmMapProvider",
-            "YandexMapProvider"});
+            "OpenStreetMap",
+            "Яндекс Карты"});
             this.miFile_MapProviders_Items.Name = "miFile_MapProviders_Items";
             this.miFile_MapProviders_Items.Size = new System.Drawing.Size(121, 23);
             this.miFile_MapProviders_Items.SelectedIndexChanged += new System.EventHandler(this.miFile_MapProviders_Items_SelectedIndexChanged);
             // 
-            // pnlMap
+            // lblProviderMap
             // 
-            this.pnlMap.BackColor = System.Drawing.SystemColors.Control;
-            this.pnlMap.Controls.Add(this.pnlLocationInfo);
-            this.pnlMap.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pnlMap.Location = new System.Drawing.Point(0, 0);
-            this.pnlMap.Name = "pnlMap";
-            this.pnlMap.Size = new System.Drawing.Size(729, 519);
-            this.pnlMap.TabIndex = 18;
-            this.pnlMap.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMap_Paint);
-            this.pnlMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseDown);
-            this.pnlMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseMove);
-            this.pnlMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseUp);
+            this.lblProviderMap.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblProviderMap.AutoSize = true;
+            this.lblProviderMap.Location = new System.Drawing.Point(14, 598);
+            this.lblProviderMap.Name = "lblProviderMap";
+            this.lblProviderMap.Size = new System.Drawing.Size(16, 13);
+            this.lblProviderMap.TabIndex = 23;
+            this.lblProviderMap.Text = "...";
             // 
             // pnlLocationInfo
             // 
@@ -287,15 +285,28 @@
             this.lLblClosePnlInfoLocation.Text = "закрыть";
             this.lLblClosePnlInfoLocation.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.lLblClosePnlInfoLocation_LinkClicked);
             // 
+            // pnlMap
+            // 
+            this.pnlMap.BackColor = System.Drawing.SystemColors.Control;
+            this.pnlMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pnlMap.Location = new System.Drawing.Point(0, 0);
+            this.pnlMap.Name = "pnlMap";
+            this.pnlMap.Size = new System.Drawing.Size(729, 519);
+            this.pnlMap.TabIndex = 18;
+            this.pnlMap.Paint += new System.Windows.Forms.PaintEventHandler(this.pnlMap_Paint);
+            this.pnlMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseDown);
+            this.pnlMap.MouseMove += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseMove);
+            this.pnlMap.MouseUp += new System.Windows.Forms.MouseEventHandler(this.pnlMap_MouseUp);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1060, 613);
+            this.Controls.Add(this.lblProviderMap);
             this.Controls.Add(this.btnCancelSearch);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.pnlMain);
-            this.Controls.Add(this.lblPlaceDisplayName);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.txtSearchLoaction);
@@ -306,10 +317,10 @@
             this.Text = "А_М_В - Геолокация";
             this.pnlMain.ResumeLayout(false);
             this.pnlMapBackground.ResumeLayout(false);
+            this.pnlMapBackground.PerformLayout();
             this.pnlLeft.ResumeLayout(false);
             this.menuStripMain.ResumeLayout(false);
             this.menuStripMain.PerformLayout();
-            this.pnlMap.ResumeLayout(false);
             this.pnlLocationInfo.ResumeLayout(false);
             this.pnlLocationInfo.PerformLayout();
             this.ResumeLayout(false);
@@ -328,7 +339,7 @@
         private System.Windows.Forms.ColumnHeader clmnClassPlace;
         private System.Windows.Forms.Button btnZoomDown;
         private System.Windows.Forms.Button btnZoomUp;
-        private System.Windows.Forms.Label lblPlaceDisplayName;
+        private System.Windows.Forms.Label lblPlaceZoom;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Panel pnlMain;
         private System.Windows.Forms.Panel pnlLeft;
@@ -342,6 +353,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmiFile;
         private System.Windows.Forms.ToolStripMenuItem tsmiFile_MapProviders;
         private System.Windows.Forms.ToolStripComboBox miFile_MapProviders_Items;
+        private System.Windows.Forms.Label lblProviderMap;
     }
 }
 
