@@ -99,6 +99,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Amv.GoogleGeo.Engine\Amv.GoogleGeo.Engine.csproj">
+      <Project>{8d979b73-7efa-42dd-9464-2a2906ec063f}</Project>
+      <Name>Amv.GoogleGeo.Engine</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Amv.Osm.Core\Amv.Geo.Core.csproj">
       <Project>{ee42f583-c181-4148-9395-206bf86bfe5e}</Project>
       <Name>Amv.Geo.Core</Name>
