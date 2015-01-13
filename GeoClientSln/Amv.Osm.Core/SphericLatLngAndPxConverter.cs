@@ -7,9 +7,7 @@ using System.Drawing;
 namespace Amv.Geo.Core
 {
    /// <summary>
-   /// конвертер широты и долготы в глобальные координаты osm карты и обратно.
-   /// взято из разбора кода java скрипта Leaflet используемого для отображения карт osm на сайте 
-   /// openstreetmap.ru
+   /// конвертер карты сферический меркатор (используется системой openstreetmap)
    /// </summary>
     public class SphericLatLngAndPxConverter
     {

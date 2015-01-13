@@ -479,14 +479,6 @@ namespace Amv.GeoClient.WinForms
             this._geoDataLayer.ClearCacheTiles();
             this.pnlMap.Invalidate();
         }
-
-        
-
-
-        
-
-       
-
-       
+     
     }
 }
