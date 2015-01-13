@@ -18,6 +18,7 @@ using System.Net;
 using System.Drawing.Imaging;
 using System.Diagnostics;
 using Amv.YandexGeo.MapLayer;
+using Amv.GoogleGeo.MapLayer;
 
 namespace Amv.GeoClient.WinForms
 {
@@ -476,6 +477,9 @@ namespace Amv.GeoClient.WinForms
             }
             if (this.miFile_MapProviders_Items.SelectedIndex == 1) {
                 this._geoMapLayer = new YandexMapLayer();
+            }
+            if (this.miFile_MapProviders_Items.SelectedIndex == 2) {
+                this._geoMapLayer = new GoogleMapLayer();
             }
             this.lblProviderMap.Text =string.Format("Поставщик карт: {0}", this.miFile_MapProviders_Items.SelectedItem);
             this._geoDataLayer.ClearCacheTiles();
