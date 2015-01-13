@@ -3,16 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
-using Amv.Geo.Core;
 
-namespace Amv.OsmGeo.MapLayer.Utils
+namespace Amv.Geo.Core
 {
    /// <summary>
    /// конвертер широты и долготы в глобальные координаты osm карты и обратно.
    /// взято из разбора кода java скрипта Leaflet используемого для отображения карт osm на сайте 
    /// openstreetmap.ru
    /// </summary>
-    public class LatLngAndOsmPointConverter
+    public class SphericLatLngAndPxConverter
     {
         public sealed class Transformer
         {
@@ -68,7 +67,7 @@ namespace Amv.OsmGeo.MapLayer.Utils
         /// <param name="lng"></param>
         /// <param name="zoom"></param>
         /// <returns></returns>
-        public static PointD ConvertLatLngToOsmPoint(double lat, double lng, int zoom) {
+        public static PointD ConvertLatLngToPx(double lat, double lng, int zoom) {
             //конвертируем в сферические координаты.
             var d = Math.PI / 180;
             var max = 1 - 1E-15;
@@ -85,7 +84,7 @@ namespace Amv.OsmGeo.MapLayer.Utils
         /// <param name="osmPoint"></param>
         /// <param name="zoom"></param>
         /// <returns></returns>
-        public static LatLng ConverOsmPointInLatLng(PointD osmPoint, int zoom) {
+        public static LatLng ConverPxInLatLng(PointD osmPoint, int zoom) {
             PointD untransformedPoint = Transformer.Inst.Untransform(osmPoint, calcScale(zoom));
             var d = 180 / Math.PI;
             var latLng = new LatLng(

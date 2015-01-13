@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Drawing;
 using Amv.Geo.Core;
 
-namespace Amv.OsmGeo.MapLayer
+namespace Amv.YandexGeo.MapLayer
 {
     /// <summary>
     /// класс описывающий тайл карты для системы osm

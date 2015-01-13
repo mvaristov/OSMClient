@@ -56,8 +56,11 @@
     <Compile Include="MapPoligonBase.cs" />
     <Compile Include="MapTileBase.cs" />
     <Compile Include="GeoLocationBase.cs" />
+    <Compile Include="MetricalPxTransformer.cs" />
     <Compile Include="PointD.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SphericLatLngAndPxConverter.cs" />
+    <Compile Include="WSD84LatLngAndPxConverter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
