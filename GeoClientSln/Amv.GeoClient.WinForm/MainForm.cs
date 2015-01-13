@@ -216,9 +216,7 @@ namespace Amv.GeoClient.WinForms
                 gr.Clear(this.pnlMapBackground.BackColor);
             }
         }
-
-
-        
+       
         /// <summary>
         /// создаем карту
         /// </summary>
