@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Amv.Geo.Core
 {
+    /// <summary>
+    /// конвертер карты элиптический меркатор (используется для карт систем яндекс и google)
+    /// </summary>
     public static class WSD84LatLngAndPxConverter
     {
         /// <summary>
