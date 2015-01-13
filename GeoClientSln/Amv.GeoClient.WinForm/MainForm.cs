@@ -59,7 +59,16 @@ namespace Amv.GeoClient.WinForms
         /// невидимое положение панели информации о местоположения 
         /// </summary>
         private Point _unvisibleLocationMessagePanel = new Point(-1000, -1000);
-      
+
+        #region Members for draw map
+        private Point _selectedPlacePanePoint;
+        private GeoLocatinMarker _selectedPlacePaneMarker;
+        private FullDrawMapMarker _fullMapMarker;
+        private CurrentLatLngMapMarker _centerLatLngMarker;
+        private GeoLocationPoligon _selectedPlacePoligon;
+        private PanelInfoMapMarker _selectedPlaceInfoMarker;
+        #endregion
+
         /// <summary>
         /// конструктор формы
         /// </summary>
@@ -209,12 +218,7 @@ namespace Amv.GeoClient.WinForms
         }
 
 
-        private Point _selectedPlacePanePoint;
-        private GeoLocatinMarker _selectedPlacePaneMarker;
-        private FullDrawMapMarker _fullMapMarker;
-        private CurrentLatLngMapMarker _centerLatLngMarker;
-        private GeoLocationPoligon _selectedPlacePoligon;
-        private PanelInfoMapMarker _selectedPlaceInfoMarker;
+        
         /// <summary>
         /// создаем карту
         /// </summary>
