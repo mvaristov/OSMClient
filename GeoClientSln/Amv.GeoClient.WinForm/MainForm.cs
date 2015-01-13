@@ -69,12 +69,14 @@ namespace Amv.GeoClient.WinForms
             //определяем основные службы для работы с геолокацией
             //поставщик информации доступных мест на карте по строке запроса.
             this._locationProvider = new OsmNominatimGeoLocationsProvider();
-            //реализует бизнес слой для получения тайлов запрашиваемой карты
-            this._geoMapLayer =new YandexMapLayer();//new OsmMapLayer();
+           
+            //this._geoMapLayer =new YandexMapLayer();//new OsmMapLayer();
             //слой получения данных для отрисовки карты
             this._geoDataLayer = new HttpDataLayer();
             //помощник перетаскивания карты
             this._movePaneHelper = new MapPaneMoveHelper();
+            //реализует бизнес слой для получения тайлов запрашиваемой карты
+            this.miFile_MapProviders_Items.SelectedIndex = 0;
             //скрываем панель информации.
             this.pnlLocationInfo.Location = this._unvisibleLocationMessagePanel;
             
@@ -292,8 +294,8 @@ namespace Amv.GeoClient.WinForms
                 using (MemoryStream ms = new MemoryStream(tile.DataBinary)) {
                     using (Bitmap btmTile = new Bitmap(ms)) {
                         graphics.DrawImageUnscaled(btmTile, tile.AppPaneCoords);
-                        //graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
-                        //graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
+                        graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
+                        graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
                     }
                 }
             }
@@ -460,6 +462,17 @@ namespace Amv.GeoClient.WinForms
         /// <param name="e"></param>
         private void lLblClosePnlInfoLocation_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e) {
             this.pnlLocationInfo.Visible = false;
+        }
+
+        private void miFile_MapProviders_Items_SelectedIndexChanged(object sender, EventArgs e) {
+            if (this.miFile_MapProviders_Items.SelectedIndex == 0) {
+                this._geoMapLayer = new OsmMapLayer();
+            }
+            if (this.miFile_MapProviders_Items.SelectedIndex == 1) {
+                this._geoMapLayer = new YandexMapLayer();
+            }
+            this._geoDataLayer.ClearCacheTiles();
+            this.CreateMap();
         }
 
         
