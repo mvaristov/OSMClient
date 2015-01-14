@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Amv.Geo.Core;
+using System.IO;
+using System.Drawing;
 
 namespace Amv.OsmGeo.HttpDataLayer
 {
@@ -73,6 +75,15 @@ namespace Amv.OsmGeo.HttpDataLayer
                     this._mapCacheLayer.AddMapTile(mt.TileKey, mt);
                     //инициализируем асинхронную загрузку данных для тайла
                     this.GetMapTileDataAsync(mt, (tile) => {
+                        if (tile.MapTileDataState == MapTileDataState.Cancel||tile.MapTileDataState==MapTileDataState.Error) {
+                            this._mapCacheLayer.RemoveSafeMapTile(tile.TileKey);
+                        }
+                        if (tile.MapTileDataState == MapTileDataState.Success) {
+                            using (MemoryStream ms = new MemoryStream(tile.DataBinary)) {
+                                tile.ImageTile = new Bitmap(ms);
+                            }
+                        }
+                        //генерим изображение из байтов
                         dataTileComplete(tile);
                     });
                 }

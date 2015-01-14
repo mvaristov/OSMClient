@@ -84,6 +84,8 @@ namespace Amv.Geo.Core
         /// </summary>
         public byte[] DataBinary { get; set; }
 
+        public Image ImageTile { get; set; }
+
         /// <summary>
         /// текущее состояние получения данных тайла
         /// </summary>

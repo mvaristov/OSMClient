@@ -228,7 +228,7 @@ namespace Amv.GeoClient.WinForms
             IEnumerable<MapTileBase> mapTiles = this._geoMapLayer.GetMapTilesForPlaceInfo(this.pnlMap.ClientRectangle,this._selectedPlaceInfo.Zoom,
                 this._currentLatLng);
             //Debug.Assert(false, "Create map");
-            Debug.WriteLine(string.Format("map:{0}-{1}",this._currentLatLng.Lat,this._currentLatLng.Lng));
+            //Debug.WriteLine(string.Format("map:{0}-{1}",this._currentLatLng.Lat,this._currentLatLng.Lng));
             //определяем координаты заданного места для панели карты
             this._selectedPlacePanePoint = this._geoMapLayer.GetLocationInMapPaneFromLatLng(this.pnlMap.ClientRectangle,this._selectedPlaceInfo.Zoom,
                 this._selectedPlaceInfo.LatLng, this._currentLatLng);
@@ -294,14 +294,9 @@ namespace Amv.GeoClient.WinForms
         /// <param name="tile"></param>
         private void drawTile(MapTileBase tile, Graphics graphics) {
             if (tile.MapTileDataState == MapTileDataState.Success) {
-                
-                using (MemoryStream ms = new MemoryStream(tile.DataBinary)) {
-                    using (Bitmap btmTile = new Bitmap(ms)) {
-                        graphics.DrawImageUnscaled(btmTile, tile.AppPaneCoords);
-                        //graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
-                        //graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
-                    }
-                }
+                graphics.DrawImage(tile.ImageTile, tile.AppPaneCoords);
+                //graphics.DrawRectangle(new Pen(Color.Black), tile.AppPaneBounds);
+                //graphics.DrawString(string.Format("{0}/{1}",tile.TileCoords.X, tile.TileCoords.Y), this.Font, Brushes.Black, tile.AppPaneCoords);
             }
             else {
                 graphics.FillRectangle(new SolidBrush(this.pnlMap.BackColor), tile.AppPaneBounds);
@@ -360,6 +355,7 @@ namespace Amv.GeoClient.WinForms
             if (this._selectedPlaceInfo == null) return false;
             //сбрасываем помощника перетаскивания карты
             this._movePaneHelper.ResetMove();
+            this._geoDataLayer.CancelPrevRequests();
             //очищаем кэш тайлов
             //this._geoDataLayer.ClearCacheTiles();
             //чистим панель карты от предыдущих отрисованных тайлов
